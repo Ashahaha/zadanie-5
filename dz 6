@@ -1,0 +1,86 @@
+#include <iostream>
+#include <ctime>
+#include <string.h>
+#include <string>
+#include <sstream> 
+#include <cstring>
+#include <conio.h>
+using namespace std;
+
+
+
+
+
+//1.Ввести символьную строку и проверить, является ли она палиндромом (палиндром читается одинаково в обоих направлениях, например, «казак»).
+bool palindrom(const char* str) {
+    size_t midr = strlen(str) - 1;
+    size_t midl = 0;
+    while (midr > midl) {
+        if (str[midl++] != str[midr--]) { return false; }
+    }return true;
+}
+
+void rasshirenie() {
+    char name[100] = "filename.exe";
+    char* point = strrchr(name, '.'); 
+    strcpy(point + 1, "doc");
+}
+
+
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    char str1[] = "abbaabba";
+    cout << "Task 1" << endl;
+    cout << (palindrom(str1) ? "Да" : "Нет") << endl;
+
+    //2.Ввести строку, в которой записана сумма натуральных чисел, например, «1+25+3». Вычислите это выражение.
+    cout << endl << "Task 2" << endl;
+    int sum = 0, number;
+    string s;
+    cout << "String: ";
+    getline(cin, s);
+    stringstream ss(s);
+    while (ss >> number){
+        sum += number;
+    }
+    cout << "Sum=" << sum << "\n";
+
+    //3.Ввести с клавиатуры в одну строку фамилию, имя и отчество, разделив их пробелом. Вывести фамилию и инициалы. Например, при вводе строки «Иванов Петр Семёнович» должно получиться «П.С. Иванов».
+    cout << endl  << "Task 3" << endl;
+    char str2[50];
+    char* p = str2;
+    cout << "Введите фамилию, имя и отчество(На английском):\n";
+    cin.getline(str2, 50);
+    while (*p != ' ')
+        p++;
+    cout << *++p << '.';
+    while (*p != ' ')
+        p++;
+    cout << *++p << ". ";
+    p = str2;
+    while (*p != ' ')
+        cout << *p++;
+    cout << endl;
+    
+    //4.Напишите функцию, которая изменяет в имени файла расширение на заданное (например, на «.bak»). Функция принимает два параметра: имя файла и нужно расширение. Учтите, что в исходном имени расширение может быть пустым.
+    cout << endl << "Task 4";
+    void rasshirenie();
+
+    //5.Напишите функцию, которая определяет, сколько раз входит в символьную строку заданное слово.
+    cout << endl << endl << "Task 5" << endl;
+    std::string str3, wrd, tmp;
+    std::cout << "String: ";
+    std::getline(std::cin, str3);
+    std::cout << "Word: ";
+    std::cin >> wrd;
+
+    std::istringstream ist(str3);
+    size_t cnt = 0;
+    while (ist >> tmp)
+        if (tmp == wrd)
+            ++cnt;
+    std::cout << "meet " << cnt << " times." << std::endl;
+
+    return 0;
+}
